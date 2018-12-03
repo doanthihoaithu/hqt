@@ -36,7 +36,9 @@
 <project name="kv-examples" default="compile-examples" basedir="." >
     <description>Compile KVStore Examples</description>
 
-    <property name="example.srcdir" value="${basedir}/examples"/>
+    <!--<property name="example.srcdir" value="${basedir}/examples"/>-->
+    <property name="example.srcdir" value="${basedir}/src/main/java"/>
+
     <property name="example.builddir" value="build"/>
     <property name="example.destdir" value="${example.builddir}/examples/classes"/>
     <property name="build.debug" value="on"/>
