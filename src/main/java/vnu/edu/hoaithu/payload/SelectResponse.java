@@ -12,4 +12,27 @@ public class SelectResponse {
     private long time;
     private ArrayList<Object> result;
 
+    public long getNumberOfRow() {
+        return numberOfRow;
+    }
+
+    public void setNumberOfRow(long numberOfRow) {
+        this.numberOfRow = numberOfRow;
+    }
+
+    public long getTime() {
+        return time;
+    }
+
+    public void setTime(long time) {
+        this.time = time;
+    }
+
+    public ArrayList<Object> getResult() {
+        return result;
+    }
+
+    public void setResult(ArrayList<Object> result) {
+        this.result = result;
+    }
 }
