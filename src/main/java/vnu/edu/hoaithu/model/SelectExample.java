@@ -22,7 +22,9 @@ import oracle.kv.query.ExecuteOptions;
 import oracle.kv.table.RecordValue;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import vnu.edu.hoaithu.payload.SelectResponse;
 
+import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
 /**
@@ -80,7 +82,8 @@ public class SelectExample extends BaseExample {
         return null;
     }
 
-    public long call (String query) {
+    public SelectResponse call (String query) {
+        SelectResponse response = new SelectResponse();
 
         KVStore store = getKVStore();
         ExecuteOptions options = new ExecuteOptions();
@@ -92,15 +95,20 @@ public class SelectExample extends BaseExample {
                 store.executeSync(query, options);
         long end = System.currentTimeMillis();
 
+        int count = 0;
+        ArrayList<Object> rows = new ArrayList<>();
         for (RecordValue record : result) {
             /* Print the full record as JSON */
-            System.out.println(record.toJsonString(true));
+            count++;
+//            System.out.println(record.toJsonString(true));
+            rows.add(record.toJsonString(true));
         };
         System.out.println("Query takes " + (end - begin) + "  milliseconds");
 
-        return end - begin;
-
-
+        response.setTime(end - begin);
+        response.setNumberOfRow(count);
+        response.setResult(rows);
+        return response;
     }
 
     private void simple() {
