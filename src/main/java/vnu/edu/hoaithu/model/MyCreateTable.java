@@ -18,6 +18,7 @@ import oracle.kv.KVStoreConfig;
 import oracle.kv.KVStoreFactory;
 import oracle.kv.table.Row;
 import oracle.kv.table.Table;
+import org.springframework.stereotype.Component;
 
 /**
  * Example 4: Parent and Child tables
@@ -27,6 +28,8 @@ import oracle.kv.table.Table;
  * table of addresses for a given user, allowing definition of multiple
  * addresses for a user.
  */
+
+@Component
 public class MyCreateTable extends BaseExample {
 
     @Override
@@ -240,6 +243,41 @@ public class MyCreateTable extends BaseExample {
             System.out.println("import " + (endId - startId + 1) + " rows takes " + (end - begin) + " millis time" );
         }
 
+    }
+
+    public long call(int beginId, int endId) {
+        Table parentTable = getTable("countries");
+        Table childTable = parentTable.getChildTable("students");
+        Row row = parentTable.createRow();
+        Country country = new Country();
+        for (int i =1; i <= Country.codes.length-1;i++) {
+
+            country.setInformationById(i);
+            row.put("country_name", country.getcountryName());
+            row.put("country_code", country.getcountryCode());
+            row.put("country_id",i);
+            getTableAPI().put(row, null, null);
+        }
+        long begin = System.currentTimeMillis();
+        Student student = new Student();
+        for (int i = beginId; i <= endId; i++) {
+            row = childTable.createRow();
+
+            /* Parent key fields */
+            row.put("country_id", Country.getRanDom());
+            /* Child key */
+            student.setStudentId(i);
+            row.put("student_id", student.getStudentId());
+            /* Child data fields */
+            student.setRandomInfor();
+            row.put("age", student.getAge());
+            row.put("first_name", student.getFirstName());
+            row.put("last_name", student.getLastName());
+            getTableAPI().putIfAbsent(row, null, null);
+        }
+        long end = System.currentTimeMillis();
+        System.out.println("import " + (endId - beginId + 1) + " rows takes " + (end - begin) + " millis time" );
+        return end-begin;
     }
 
     public static void main(String[] args) {
