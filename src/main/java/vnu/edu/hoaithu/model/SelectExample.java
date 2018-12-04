@@ -87,7 +87,7 @@ public class SelectExample extends BaseExample {
 
         KVStore store = getKVStore();
         ExecuteOptions options = new ExecuteOptions();
-        options.setTimeout(30000, TimeUnit.MILLISECONDS);
+        options.setTimeout(600000, TimeUnit.MILLISECONDS);
 
         System.out.println("\n  Select query: " + query);
         long begin = System.currentTimeMillis();

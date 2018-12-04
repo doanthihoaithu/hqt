@@ -12,6 +12,8 @@ import vnu.edu.hoaithu.model.MyCreateTable;
 import vnu.edu.hoaithu.model.SelectExample;
 import vnu.edu.hoaithu.payload.SelectResponse;
 
+import java.util.concurrent.TimeUnit;
+
 @RestController
 @RequestMapping("/nosql")
 public class NoSqlController {
@@ -27,8 +29,9 @@ public class NoSqlController {
         String storeName = "kvstore";
         String hostName = "localhost";
         String hostPort = "5000";
-        KVStore kvStore = KVStoreFactory.getStore(new KVStoreConfig(storeName, hostName
-                + ":" + hostPort));
+        KVStoreConfig kvconfig = new KVStoreConfig(storeName, hostName
+                + ":" + hostPort);
+        KVStore kvStore = KVStoreFactory.getStore(kvconfig.setSocketReadTimeout(3600000,TimeUnit.MILLISECONDS));
         selectExample.init(kvStore);
         SelectResponse response = selectExample.call(query);
         return new ResponseEntity<SelectResponse>(response, HttpStatus.OK);
@@ -41,8 +44,10 @@ public class NoSqlController {
         String storeName = "kvstore";
         String hostName = "localhost";
         String hostPort = "5000";
-        KVStore kvStore = KVStoreFactory.getStore(new KVStoreConfig(storeName, hostName
-                + ":" + hostPort));
+        KVStoreConfig kvconfig = new KVStoreConfig(storeName, hostName
+                + ":" + hostPort);
+//        kvconfig.setSocketReadTimeout(3600000,TimeUnit.MILLISECONDS);
+        KVStore kvStore = KVStoreFactory.getStore(kvconfig);
         createExample.init(kvStore);
         long time = createExample.call(beginId,endId);
         return new ResponseEntity<Long> (new Long(time), HttpStatus.OK);
