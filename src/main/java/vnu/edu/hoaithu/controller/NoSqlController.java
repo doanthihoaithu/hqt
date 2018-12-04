@@ -31,9 +31,9 @@ public class NoSqlController {
         String hostPort = "5000";
         KVStoreConfig kvconfig = new KVStoreConfig(storeName, hostName
                 + ":" + hostPort);
-        kvconfig.setRequestTimeout(3600000, TimeUnit.MILLISECONDS);
-        kvconfig.setSocketReadTimeout(3600000,TimeUnit.MILLISECONDS);
-        KVStore kvStore = KVStoreFactory.getStore(kvconfig);
+//        kvconfig.setRequestTimeout(3600000, TimeUnit.MILLISECONDS);
+//        kvconfig.setSocketReadTimeout(3600000,TimeUnit.MILLISECONDS);
+        KVStore kvStore = KVStoreFactory.getStore(kvconfig.setSocketReadTimeout(3600000,TimeUnit.MILLISECONDS));
         selectExample.init(kvStore);
         SelectResponse response = selectExample.call(query);
         return new ResponseEntity<SelectResponse>(response, HttpStatus.OK);
