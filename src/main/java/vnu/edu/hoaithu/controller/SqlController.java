@@ -21,8 +21,8 @@ import java.util.concurrent.TimeUnit;
 public class SqlController {
 
     @PostMapping("/select")
-    @ApiOperation("Nhập mysql query")
-    public ResponseEntity<SelectResponse> getSelectTime (@RequestParam("query") String query){
+    @ApiOperation("Nhập mysql query: select ")
+    public ResponseEntity<SelectResponse> getSelectTime (@RequestParam("query") String query) throws Exception {
         SelectResponse response = new SelectResponse();
         try
         {
@@ -80,15 +80,44 @@ public class SqlController {
             response.setResult(rows);
             response.setNumberOfRow(count);
             st.close();
+            return new ResponseEntity<>(response, HttpStatus.OK);
 
         }
         catch (Exception e)
         {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
+            throw new Exception(e.getMessage());
         }
+        
+    }
 
-        return new ResponseEntity<>(response, HttpStatus.OK);
 
+    @PostMapping("/update")
+    @ApiOperation("Nhập mysql query: delete, update, insert")
+    public ResponseEntity<Integer> getUpdateTime (@RequestParam("query") String query) throws Exception {
+        SelectResponse response = new SelectResponse();
+        try {
+            // create our mysql database connection
+            String myDriver = "com.mysql.cj.jdbc.Driver";
+            String myUrl = "jdbc:mysql://localhost/hqt";
+            Class.forName(myDriver);
+            Connection conn = DriverManager.getConnection(myUrl, "root", "123456");
+
+            // our SQL SELECT query.
+            // if you only need a few columns, specify them by name instead of using "*"
+//            String query = "SELECT * FROM users";
+
+            // create the java statement
+            Statement st = conn.createStatement();
+
+            // execute the query, and get a java resultset
+            long begin = System.currentTimeMillis();
+            int number = st.executeUpdate(query);
+            long end = System.currentTimeMillis();
+            return new ResponseEntity<>(new Integer(number), HttpStatus.OK);
+        } catch (Exception e) {
+            throw  e;
+        }
     }
 }
