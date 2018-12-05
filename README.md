@@ -59,5 +59,6 @@ $ java -jar build/libs/hoaithu-0.0.1-SNAPSHOT.jar
 ```
 Truy cập vào link [http://localhost:5000/swagger-ui.html#/] để thực hiện các truy vấn trên giao diện web.
 Trước khi test, chạy controller NoSQL import dữ liệu, nhập 1 và 1000 để có dữ liệu test
+Hoặc có thẻ thử trực tiếp tại link [http://34.230.78.255:9999/swagger-ui.html#/][PlDb]
 
 ### END
