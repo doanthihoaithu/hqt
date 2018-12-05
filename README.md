@@ -37,7 +37,7 @@ Thành viên trong nhóm:
 $ cd hqt
 $ gradle build -x test
 ```
-
+Để tạo dữ liệu test cho MySQL , yêu cầu người dùng tự import dữ liệu bằng 2 file Country.txt và Student.txt, 2 file này có trong thư mục gốc của project.
 Run KVStore service để có môi trường chạy Oracle NoSQL, với câu lệnh dưới đây, KVStore service được chạy ở localhost port 5000, chú ý kiểm tra máy tính để ko có service nào khác đang chạy ở port 5000
 
 ```sh
@@ -58,4 +58,6 @@ Sau khi build project xong, ngay trong thư mục gốc của project sẽ xuấ
 $ java -jar build/libs/hoaithu-0.0.1-SNAPSHOT.jar
 ```
 Truy cập vào link [http://localhost:5000/swagger-ui.html#/] để thực hiện các truy vấn trên giao diện web.
+Trước khi test, chạy controller NoSQL import dữ liệu, nhập 1 và 1000 để có dữ liệu test
+
 ### END
