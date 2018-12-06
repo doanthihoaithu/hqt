@@ -17,8 +17,8 @@ Thành viên trong nhóm:
   - Mỗi DBMS có khoảng 20 triệu bản ghi
 
 # Demo giao diện web
-   Project đã dc deploy trên server để test thử, bạn có thể xem demo tại link [http://52.203.146.76:9999/swagger-ui.html#/][PlDb]  
-(Do không có điều kiện kinh tế để duy trì server 4 core 16G Ram, đây chỉ là bản để mô phỏng giao diện với độ lớn data là 1m bản ghi, cấu hình cpu: 1 core 1G Ram)
+   Project đã dc deploy trên server để test thử, bạn có thể xem demo tại link [http://54.165.68.249:9999/swagger-ui.html#/][PlDb]  
+(Do không có điều kiện kinh tế để duy trì server 4 core 16G Ram, đây chỉ là bản để mô phỏng giao diện với độ lớn data là 100000 bản ghi, cấu hình cpu: 1 core 1G Ram)
 
 ### Project sử dụng ngôn ngữ:
   - Java cho backend
