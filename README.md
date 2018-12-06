@@ -6,6 +6,7 @@ Thành viên trong nhóm:
   - Trần Hữu Tuân
   - Nguyễn Đức Thiện
 
+
 # Mô tả chung về project
 
   - Project hỗ trợ người dùng thực hiện các truy vấn trên giao diện đối với 2 cơ sở dữ liệu là Oracle NoSQL và MySQL
@@ -14,6 +15,10 @@ Thành viên trong nhóm:
   - Students gồm các trường ("student_id":int,"fist_name":varchar(20),"last_name":varchar(20),"age":int,"country_id":int)
   - Countries gồm các trường ("country_id":int,"country_code":varchar(2),"country_name":varchar(20))
   - Mỗi DBMS có khoảng 20 triệu bản ghi
+
+# Demo giao diện web
+   Project đã dc deploy trên server để test thử, bạn có thể xem demo tại link [http://52.203.146.76:9999/swagger-ui.html#/][PlDb]  
+(Do không có điều kiện kinh tế để duy trì server 4 core 16G Ram, đây chỉ là bản để mô phỏng giao diện với độ lớn data là 1m bản ghi, cấu hình cpu: 1 core 1G Ram)
 
 ### Project sử dụng ngôn ngữ:
   - Java cho backend
@@ -30,7 +35,12 @@ Thành viên trong nhóm:
 ### Yêu cầu máy tính cần có:
 - Java 8
 - Gradle 4.0 trở lên (Công cụ để build project)
-- MySQL Server 8.0
+```sh
+sudo add-apt-repository ppa:cwchien/gradle
+sudo apt-get update
+sudo apt upgrade gradle
+```
+- MySQL Server 8.0, chi tiết cài đặt xem tại link [https://www.tecmint.com/install-mysql-8-in-ubuntu/][PlDb]
 - Clone project tại link [https://github.com/doanthihoaithu/hqt][PlDb]
 #### Sau khi clone project, build project bằng gradle
 ```sh
@@ -38,6 +48,10 @@ $ cd hqt
 $ gradle build -x test
 ```
 Để tạo dữ liệu test cho MySQL , yêu cầu người dùng tự import dữ liệu bằng 2 file Country.txt và Student.txt, 2 file này có trong thư mục gốc của project.
+```sh
+mysql> source [link tới file Country.txt trong thư mục gốc project] 
+mysql> source [link tới file Student.txt trong thư mục gốc project]
+```
 Run KVStore service để có môi trường chạy Oracle NoSQL, với câu lệnh dưới đây, KVStore service được chạy ở localhost port 5000, chú ý kiểm tra máy tính để ko có service nào khác đang chạy ở port 5000
 
 ```sh
@@ -59,6 +73,5 @@ $ java -jar build/libs/hoaithu-0.0.1-SNAPSHOT.jar
 ```
 Truy cập vào link [http://localhost:5000/swagger-ui.html#/] để thực hiện các truy vấn trên giao diện web.
 Trước khi test, chạy controller NoSQL import dữ liệu, nhập 1 và 1000 để có dữ liệu test
-Hoặc có thẻ thử trực tiếp tại link [http://34.230.78.255:9999/swagger-ui.html#/][PlDb]
 
 ### END
