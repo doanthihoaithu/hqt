@@ -29,9 +29,9 @@ public class SqlController {
         {
             // create our mysql database connection
             String myDriver = "com.mysql.cj.jdbc.Driver";
-            String myUrl = "jdbc:mysql://localhost/hqt";
+            String myUrl = "jdbc:mysql://oasis.calkf2k8bqjc.ap-southeast-1.rds.amazonaws.com:3306/hqt";
             Class.forName(myDriver);
-            Connection conn = DriverManager.getConnection(myUrl, "root", "123456");
+            Connection conn = DriverManager.getConnection(myUrl, "bqcuong", "buiquangcuong");
 
             // our SQL SELECT query.
             // if you only need a few columns, specify them by name instead of using "*"
