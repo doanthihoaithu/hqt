@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import vnu.edu.hoaithu.payload.SQLUpdateResponse;
 import vnu.edu.hoaithu.payload.SelectResponse;
 
 import java.sql.*;
@@ -76,9 +77,9 @@ public class SqlController {
 //                // print the results
 //                System.out.format("%s, %s, %s, %s, %s, %s\n", id, firstName, lastName, dateCreated, isAdmin, numPoints);
 //            }
-            response.setTime(end - begin);
+            response.setExecuted_time(end - begin);
             response.setResult(rows);
-            response.setNumberOfRow(count);
+            response.setNumber_of_row(count);
             st.close();
             return new ResponseEntity<>(response, HttpStatus.OK);
 
@@ -95,8 +96,8 @@ public class SqlController {
 
     @PostMapping("/update")
     @ApiOperation("Nhập mysql query: delete, update, insert")
-    public ResponseEntity<Integer> getUpdateTime (@RequestParam("query") String query) throws Exception {
-        SelectResponse response = new SelectResponse();
+    public ResponseEntity<SQLUpdateResponse> getUpdateTime (@RequestParam("query") String query) throws Exception {
+        SQLUpdateResponse response = new SQLUpdateResponse();
         try {
             // create our mysql database connection
             String myDriver = "com.mysql.cj.jdbc.Driver";
@@ -115,7 +116,9 @@ public class SqlController {
             long begin = System.currentTimeMillis();
             int number = st.executeUpdate(query);
             long end = System.currentTimeMillis();
-            return new ResponseEntity<>(new Integer(number), HttpStatus.OK);
+            response.setExecuted_time(end - begin);
+            response.setNumber_of_effected_row(number);
+            return new ResponseEntity<SQLUpdateResponse>(response, HttpStatus.OK);
         } catch (Exception e) {
             throw  e;
         }

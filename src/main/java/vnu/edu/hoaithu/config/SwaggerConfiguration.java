@@ -94,8 +94,8 @@ public class SwaggerConfiguration {
     }
 
     private ApiInfo apiInfo() {
-        return new ApiInfoBuilder().title("UETMan API")
-                .description("The API Documentation of OracleNosql").termsOfServiceUrl("")
+        return new ApiInfoBuilder().title("Oracle NoSQL and MySQL")
+                .description("Hệ thống so sánh thời gian truy vấn các câu query giữa 2 DBMS: Oracle NOSQL và MySQL").termsOfServiceUrl("")
                 .contact(new Contact("Doan Thi Hoai Thu", "", "hoaithuxt1998@gmail.com"))
                 .license("Apache License Version 2.0")
                 .licenseUrl("https://www.apache.org/licenses/LICENSE-2.0")

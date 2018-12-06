@@ -105,8 +105,8 @@ public class SelectExample extends BaseExample {
         };
         System.out.println("Query takes " + (end - begin) + "  milliseconds");
 
-        response.setTime(end - begin);
-        response.setNumberOfRow(count);
+        response.setExecuted_time(end - begin);
+        response.setNumber_of_row(count);
         response.setResult(rows);
         return response;
     }

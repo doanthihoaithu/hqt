@@ -16,6 +16,7 @@ import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequestMapping("/nosql")
+@ApiOperation("Truy vấn đối với Oracle NoSQL")
 public class NoSqlController {
 
 

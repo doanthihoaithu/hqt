@@ -8,24 +8,24 @@ import java.util.ArrayList;
 @Getter
 @Setter
 public class SelectResponse {
-    private long numberOfRow;
-    private long time;
+    private long number_of_row;
+    private long executed_time;
     private ArrayList<Object> result;
 
-    public long getNumberOfRow() {
-        return numberOfRow;
+    public long getNumber_of_row() {
+        return number_of_row;
     }
 
-    public void setNumberOfRow(long numberOfRow) {
-        this.numberOfRow = numberOfRow;
+    public void setNumber_of_row(long number_of_row) {
+        this.number_of_row = number_of_row;
     }
 
-    public long getTime() {
-        return time;
+    public long getExecuted_time() {
+        return executed_time;
     }
 
-    public void setTime(long time) {
-        this.time = time;
+    public void setExecuted_time(long executed_time) {
+        this.executed_time = executed_time;
     }
 
     public ArrayList<Object> getResult() {
